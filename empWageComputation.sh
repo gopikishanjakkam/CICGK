@@ -5,10 +5,15 @@ echo "Welcome to Employee Wage Computation Program on Master Branch"
 isFullTime=0
 isPartTime=1
 empWagePerHr=20
-totalSalary=0
+
+totalDaysWorked=0
+totalEmpHrs=0
 numOfDays=20
-for(( day=1;day<=$numOfDays;day++ ))
+workingHrs=100
+
+while [[ $totalEmpHrs -lt $workingHrs && $totalDaysWorked -lt $numOfDays ]]
 do
+  ((totalDaysWorked++))
   randomcheck=$(( $RANDOM%3 ));
   case $randomcheck in
           $isFullTime)
@@ -23,8 +28,8 @@ do
             echo "Employee is absent";
             empHrs=0;
   esac
-  salary=$(($empWagePerHr*$empHrs))
-  totalSalary=$(($totalSalary+$salary))
+  totalEmpHrs=$(($totalEmpHrs+$empHrs))
 done
 
+totalSalary=$(($empWagePerHr*$totalEmpHrs))
 echo "Employee's Wage This month="$totalSalary
