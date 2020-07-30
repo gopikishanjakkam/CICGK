@@ -6,18 +6,19 @@ isFullTime=0
 isPartTime=1
 empWagePerHr=20
 randomcheck=$(( $RANDOM%3 ));
-if [ $isFullTime -eq $randomcheck ];
-then
-    echo "Employee is present for full time";
-    empHrs=8;
-elif [ $isPartTime -eq $randomcheck ];
-then
-    echo "Employee is present for Part time";
-    empHrs=4;
-else
-    echo "Employee is absent";
-    empHrs=0;
-fi
+case $randomcheck in
+          $isFullTime)
+            echo "Employee is present for full time";
+            empHrs=8;
+             ;;
+          $isPartTime)
+            echo "Employee is present for Part time";
+            empHrs=4;
+             ;;
+                    *)
+            echo "Employee is absent";
+            empHrs=0;
+esac
 
 salary=$(($empWagePerHr*$empHrs))
 echo "Employees Wage Today="$salary
