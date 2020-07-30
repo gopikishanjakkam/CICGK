@@ -12,6 +12,7 @@ numOfDays=20
 workingHrs=100
 
 count=0
+declare -A dailyWage
 
 function empHrsFunc()
 {
@@ -34,10 +35,11 @@ do
   ((totalDaysWorked++))
   empHrs=$(empHrsFunc $(( $RANDOM%3 )))
   totalEmpHrs=$(($totalEmpHrs+$empHrs))
-  dailyWage[$totalDaysWorked]=$(($empHrs*$empWagePerHr))
+  dailyWage["Day-$totalDaysWorked"]=$(($empHrs*$empWagePerHr))
   ((count++))
 done
 
 totalSalary=$(($empWagePerHr*$totalEmpHrs))
 echo "Employee's Wage This month="$totalSalary
+echo ${!dailyWage[@]}
 echo ${dailyWage[@]}
