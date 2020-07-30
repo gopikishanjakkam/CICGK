@@ -11,23 +11,28 @@ totalEmpHrs=0
 numOfDays=20
 workingHrs=100
 
+function empHrsFunc()
+{
+case $1 in
+     $isFullTime)
+        empHrs=8;
+        echo $empHrs
+         ;;
+     $isPartTime)
+        empHrs=4;
+        echo $empHrs
+         ;;
+               *)
+        empHrs=0;
+        echo $empHrs
+         ;;
+esac
+}
+
 while [[ $totalEmpHrs -lt $workingHrs && $totalDaysWorked -lt $numOfDays ]]
 do
   ((totalDaysWorked++))
-  randomcheck=$(( $RANDOM%3 ));
-  case $randomcheck in
-          $isFullTime)
-            echo "Employee is present for full time";
-            empHrs=8;
-             ;;
-          $isPartTime)
-            echo "Employee is present for Part time";
-            empHrs=4;
-             ;;
-                    *)
-            echo "Employee is absent";
-            empHrs=0;
-  esac
+  empHrs=$(empHrsFunc $(( $RANDOM%3 )))
   totalEmpHrs=$(($totalEmpHrs+$empHrs))
 done
 
