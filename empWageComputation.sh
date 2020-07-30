@@ -11,22 +11,22 @@ totalEmpHrs=0
 numOfDays=20
 workingHrs=100
 
+count=0
+
 function empHrsFunc()
 {
 case $1 in
      $isFullTime)
         empHrs=8;
-        echo $empHrs
          ;;
      $isPartTime)
         empHrs=4;
-        echo $empHrs
          ;;
                *)
         empHrs=0;
-        echo $empHrs
          ;;
 esac
+echo $empHrs
 }
 
 while [[ $totalEmpHrs -lt $workingHrs && $totalDaysWorked -lt $numOfDays ]]
@@ -34,7 +34,10 @@ do
   ((totalDaysWorked++))
   empHrs=$(empHrsFunc $(( $RANDOM%3 )))
   totalEmpHrs=$(($totalEmpHrs+$empHrs))
+  dailyWage[$totalDaysWorked]=$(($empHrs*$empWagePerHr))
+  ((count++))
 done
 
 totalSalary=$(($empWagePerHr*$totalEmpHrs))
 echo "Employee's Wage This month="$totalSalary
+echo ${dailyWage[@]}
