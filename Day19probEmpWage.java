@@ -8,18 +8,19 @@ public class EmployeeWageComputation
 		final int WAGE_PER_HR=20;
 		int empHrs=0,empWage=0;
 		double empCheck=Math.floor(Math.random()*10)%3;
-		if(empCheck == IS_FULL_TIME)
+		switch((int)empCheck)
 			{
+			case IS_FULL_TIME:
 				System.out.println("Employee is present for full time");
 				empHrs=8;
-			}
-		else if(empCheck == IS_PART_TIME)
-			{
+				break;
+			case IS_PART_TIME:
 				System.out.println("Employee is present for part time");
 				empHrs=4;
-			}
-		else
+				break;
+			default:
 				System.out.println("Employee is absent");
+			}
 				empWage=empHrs*WAGE_PER_HR;
 				System.out.println("Employee wage="+empWage);
 		}
