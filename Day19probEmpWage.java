@@ -7,10 +7,13 @@ public class EmployeeWageComputation
 		final int IS_PART_TIME=2;
 		final int WAGE_PER_HR=20;
 		final int NUM_OF_WORKING_DAYS=20;
+		final int MAX_NUM_OF_HRS=100;
 
-		int empHrs=0,empWage=0,totalEmpWage=0;
-		for(int day=1;day<=NUM_OF_WORKING_DAYS;day++)
+		int empHrs=0,totalEmpHrs=0,empWage=0,totalEmpWage=0,totalWorkingDays=0,day=1;
+		while(totalEmpHrs<=MAX_NUM_OF_HRS && totalWorkingDays<NUM_OF_WORKING_DAYS)
 		{
+			totalWorkingDays++;
+			day++;
 			double empCheck=Math.floor(Math.random()*10)%3;
 			switch((int)empCheck)
 				{
@@ -28,7 +31,8 @@ public class EmployeeWageComputation
 				}
 				empWage=empHrs*WAGE_PER_HR;
 				totalEmpWage+=empWage;
-				System.out.println("Employee wageon day "+day+"="+empWage);
+				totalEmpHrs+=empHrs;
+				System.out.println("Employee wage on day "+day+"="+empWage);
 		}
 		System.out.println("Employee Wage This Month="+totalEmpWage);
 		}
